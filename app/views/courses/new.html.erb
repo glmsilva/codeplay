@@ -1,4 +1,10 @@
 <%= form_for @course do |c| %>
+  <% if @course.errors.any? %>
+    <%= pluralize(@course.errors.count, 'error') %>
+    <% @course.errors.full_messages.each do |msg| %>
+      <li> <%= msg %></li>
+    <% end %>
+  <% end %>
   <%= c.label :name, 'Nome' %>
  <%= c.text_field :name %>
   <%= c.label :description, 'Descrição' %>
