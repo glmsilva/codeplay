@@ -1,8 +1,10 @@
 <h1>Instrutores</h1>
 
 <% @instructors.each do |instructor| %>
+  <% if instructor.profile_picture.attached? %>
+    <%= image_tag instructor.profile_picture %>
+  <% end %>
   <%= instructor.name %> 
   <%= instructor.email %>
   <%= instructor.bio %>
-  <%= instructor.profile_picture %>
 <%end %>
