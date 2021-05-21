@@ -1,6 +1,6 @@
 <%= @course.name %>
 <%= @course.description %>
 <%= @course.code %>
-<%= number_to_currency @course.price, unit: 'R$', delimiter: '.', separator: ',', format: '%u %n' %>
-<%= @course.enrollment_deadline.strftime('%d/%m/%Y') %>
+<%= number_to_currency @course.price %>
+<%= l @course.enrollment_deadline %>
 <%= link_to 'Voltar', courses_path  %>
