@@ -1,0 +1,7 @@
+<% @instructors.each do |instructor| %>
+  <% if instructor.profile_picture.attached? %>
+    <%= image_tag instructor.profile_picture %>
+  <% end %>
+  <%= instructor.name %>
+<% end %>
+
