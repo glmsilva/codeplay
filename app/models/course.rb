@@ -1,5 +1,8 @@
 class Course < ApplicationRecord
-  validates :name, :price, presence: true
-  validates :code, presence: true, uniqueness: true
+  belongs_to :instructor
 
-end  
+  validates :name, :price, :code, presence: true
+  validates :code, uniqueness: true
+
+  has_one_attached :banner
+end

@@ -1,20 +1,3 @@
-<%= form_for @course do |c| %>
-  <% if @course.errors.any? %>
-    <%= pluralize(@course.errors.count, 'error') %>
-    <% @course.errors.full_messages.each do |msg| %>
-      <li> <%= msg %></li>
-    <% end %>
-  <% end %>
-  <%= c.label :name, 'Nome' %>
- <%= c.text_field :name %>
-  <%= c.label :description, 'Descrição' %>
-  <%= c.text_field :description %>
-  <%= c.label :code, 'Código' %>
-  <%= c.text_field :code %>
-  <%= c.label :price, 'Preço' %>
-  <%= c.text_field :price %>
-  <%= c.label :enrollment_deadline, 'Data limite de matrícula' %>
-  <%= c.text_field :enrollment_deadline %>
-  <%= c.submit 'Criar curso' %>
-  
-<% end %>
+<h1><%= t '.title' %></h1>
+
+<%= render 'form', course: @course, instructors: @instructors, button_text: 'Criar curso' %>
