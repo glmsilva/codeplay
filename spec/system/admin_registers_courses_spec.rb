@@ -23,7 +23,7 @@ describe 'Admin registers courses' do
     fill_in 'Preço', with: '30'
     fill_in 'Data limite de matrícula', with: '22/12/2033'
     select "#{instructor.name} - #{instructor.email}", from: 'Instrutor(a)'
-    attach_file 'Banner', Rails.root.join('spec/fixtures/course.png')
+    attach_file 'Banner do Curso', Rails.root.join('spec/fixtures/course.png')
     click_on 'Criar curso'
 
     expect(current_path).to eq(course_path(Course.last))

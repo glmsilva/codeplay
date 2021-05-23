@@ -2,6 +2,8 @@
   <% if instructor.profile_picture.attached? %>
     <%= image_tag instructor.profile_picture %>
   <% end %>
-  <%= instructor.name %>
+  <%= link_to instructor.name, instructor %>
 <% end %>
 
+<%= link_to 'Registrar um Professor', new_instructor_path %>
+<%= link_to 'Voltar', root_path %>

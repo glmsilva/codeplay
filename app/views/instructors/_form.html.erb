@@ -1,0 +1,17 @@
+<%= form_with model: instructor do |f| %>
+  <%= f.label :name, 'Nome' %>
+  <%= f.text_field :name %>
+  <% instructor.errors.full_messages_for(:name).each do |error| %>
+    <%= error %>
+  <%end %>
+  <%= f.label :bio, 'Bio' %>
+  <%= f.text_area :bio %>
+  <%= f.label :email, 'Email' %>
+  <%= f.text_field :email %>
+  <% instructor.errors.full_messages_for(:email).each do |error| %>
+    <%= error %>
+  <%end %>
+  <%= f.label :profile_picture, 'Foto de Perfil' %>
+  <%= f.file_field :profile_picture%>
+  <%= f.submit button_text %>
+<%end %>

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
   root 'home#index'
   resources :courses
-  resources :instructors , only: %i[index]
+  resources :instructors , only: %i[index show new create]
 end

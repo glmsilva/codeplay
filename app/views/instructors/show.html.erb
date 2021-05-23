@@ -1,0 +1,9 @@
+<% if @instructor.profile_picture.attached? %>
+  <%= image_tag @instructor.profile_picture %>
+<% end %>
+<%= @instructor.name %>
+<%= @instructor.bio %>
+<%= @instructor.email %>
+
+<%= link_to 'Voltar', instructors_path %>
+
