@@ -18,7 +18,23 @@ class InstructorsController < ApplicationController
     else
       render :new
     end
+  end
 
+  def edit
+    @instructor = Instructor.find(params[:id])
+  end
+
+  def update
+    @instructor = Instructor.find(params[:id])
+    @instructor.update(instructor_params)
+
+    redirect_to @instructor, notice: 'Professor atualizado com sucesso'
+  end
+
+  def destroy
+    @instructor = Instructor.find(params[:id])
+    @instructor.destroy
+    redirect_to instructors_path, notice: 'Professor apagado com sucesso'
   end
 
   private
