@@ -1,0 +1,5 @@
+<% @lessons.each do |lesson| %>
+  <p><%= lesson.name %></p>
+  <p><%= lesson.length %> minutos</p>
+  <p><%= lesson.course.name %></p>
+<%end %>
