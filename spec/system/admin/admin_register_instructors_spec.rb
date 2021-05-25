@@ -6,7 +6,7 @@ describe 'Admin register instructors' do
     click_on 'Professores'
 
     expect(page).to have_link('Registrar um Professor',
-                              href: new_instructor_path)
+                              href: new_admin_instructor_path)
   end
 
   it 'successfully' do
@@ -20,7 +20,7 @@ describe 'Admin register instructors' do
     attach_file 'Foto de Perfil', Rails.root.join('spec/fixtures/instructor_image.png')
     click_on 'Cadastrar Professor'
 
-    expect(current_path).to eq(instructor_path(Instructor.last))
+    expect(current_path).to eq(admin_instructor_path(Instructor.last))
     expect(page).to have_content('Jane Doe')
     expect(page).to have_content('Uma professora de Ruby on Rails')
     expect(page).to have_content('janedoe@codeplay.com.br')
@@ -29,7 +29,7 @@ describe 'Admin register instructors' do
   end
 
   it 'and attributes cannot be blank' do
-    visit instructors_path
+    visit admin_instructors_path
     click_on 'Registrar um Professor'
     click_on 'Cadastrar Professor'
 
@@ -43,7 +43,7 @@ describe 'Admin register instructors' do
                        email: 'fulano@codeplay.com.br',
                        profile_picture: fixture_file_upload(Rails.root.join('spec/fixtures/instructor_image.png')))
 
-    visit instructors_path
+    visit admin_instructors_path
     click_on 'Registrar um Professor'
     fill_in 'Email', with: 'fulano@codeplay.com.br'
     click_on 'Cadastrar Professor'

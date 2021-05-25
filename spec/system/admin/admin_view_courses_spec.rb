@@ -36,7 +36,7 @@ describe 'Admin view courses' do
                    instructor: instructor,
                    banner: fixture_file_upload(Rails.root.join('spec/fixtures/course.png')))
 
-    visit courses_path
+    visit admin_courses_path
     click_on 'Ruby on Rails'
 
     expect(page).to have_css('img[src*="course.png"]')
@@ -49,7 +49,7 @@ describe 'Admin view courses' do
   end
 
   it 'and no course is available' do
-    visit courses_path
+    visit admin_courses_path
 
     expect(page).to have_content('Nenhum curso disponível')
   end
@@ -80,6 +80,6 @@ describe 'Admin view courses' do
     click_on 'Ruby'
     click_on 'Voltar'
 
-    expect(current_path).to eq courses_path
+    expect(current_path).to eq admin_courses_path
   end
 end

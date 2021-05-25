@@ -1,0 +1,4 @@
+<%= @lesson.name %>
+<%= t('lesson.length',count: @lesson.length) %>
+<%= @lesson.content %>
+<%= link_to 'Editar', edit_admin_course_lesson_path(@lesson) %>

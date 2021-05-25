@@ -6,7 +6,7 @@ describe "Admin update instructors" do
                        email: 'johndoe@codeplay.com.br',
                        profile_picture: fixture_file_upload(Rails.root.join('spec/fixtures/instructor_image.png')))
 
-    visit instructor_path(instructor)
+    visit admin_instructor_path(instructor)
     click_on 'Editar'
     fill_in 'Nome', with: 'João das Neves'
     fill_in 'Bio', with: 'Um professor gelado'

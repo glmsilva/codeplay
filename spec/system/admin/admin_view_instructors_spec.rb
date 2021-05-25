@@ -20,7 +20,7 @@ describe 'Admin view instructors' do
                        bio: 'Um professor da codeplay',
                        profile_picture: fixture_file_upload(Rails.root.join('spec/fixtures/instructor_image.png')))
 
-    visit instructors_path
+    visit admin_instructors_path
     click_on 'Fulano Sicrano'
 
     expect(page).to have_content('Fulano Sicrano')
@@ -36,7 +36,7 @@ describe 'Admin view instructors' do
                        bio: 'Um professor da codeplay',
                        profile_picture: fixture_file_upload(Rails.root.join('spec/fixtures/instructor_image.png')))
 
-    visit instructors_path
+    visit admin_instructors_path
     click_on 'Voltar'
 
     expect(current_path).to eq root_path
@@ -48,11 +48,11 @@ describe 'Admin view instructors' do
                        bio: 'Um professor da codeplay',
                        profile_picture: fixture_file_upload(Rails.root.join('spec/fixtures/instructor_image.png')))
 
-    visit instructors_path
+    visit admin_instructors_path
     click_on 'Fulano Sicrano'
     click_on 'Voltar'
 
-    expect(current_path).to eq instructors_path
+    expect(current_path).to eq admin_instructors_path
   end
 
 end

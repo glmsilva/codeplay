@@ -1,4 +1,4 @@
-<%= form_with model: instructor do |f| %>
+<%= form_with model: [:admin, instructor] do |f| %>
   <%= f.label :name, 'Nome' %>
   <%= f.text_field :name %>
   <% instructor.errors.full_messages_for(:name).each do |error| %>

@@ -1,0 +1,10 @@
+<% if @instructor.profile_picture.attached? %>
+  <%= image_tag @instructor.profile_picture %>
+<% end %>
+<%= @instructor.name %>
+<%= @instructor.bio %>
+<%= @instructor.email %>
+<%= link_to 'Editar', edit_admin_instructor_path(@instructor) %>
+<%= link_to 'Apagar', admin_instructor_path(@instructor), method: :delete %>
+<%= link_to 'Voltar', admin_instructors_path %>
+

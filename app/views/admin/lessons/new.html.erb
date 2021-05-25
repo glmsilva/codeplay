@@ -1,0 +1,19 @@
+<%= form_with model: [:admin, :course, @lesson] do |f| %>
+  <%= f.label :name, 'Nome' %>
+  <%= f.text_field :name %>
+  <% @lesson.errors.messages_for(:name).each do |message| %>
+    <%= message %>
+  <%end %>
+  <%= f.label :content, 'Conteúdo' %>
+  <%= f.text_area :content %>
+  <% @lesson.errors.messages_for(:content).each do |message| %>
+    <%= message %>
+  <%end %>
+  <%= f.label :length, 'Duração' %>
+  <%= f.number_field :length%>
+  <% @lesson.errors.messages_for(:length).each do |message| %>
+    <%= message %>
+  <%end %>
+  <%= f.submit 'Salvar' %>
+<%end %>
+
