@@ -1,0 +1,44 @@
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+
+          <%= link_to 'Home', root_path, class: 'nav-link' %>
+          <span class="visually-hidden">(current)</span>
+
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Cursos', admin_courses_path, class: 'nav-link'%>
+        </li>
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to current_user.email, '#', class: 'nav-link'%>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Sair', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to 'Entrar', new_user_session_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Registrar-se', new_user_registration_path, class: 'nav-link' %>
+          </li>
+        <% end %>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-sm-2" type="text" placeholder="Search">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
