@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :instructors
     resources :courses do
-      resources :lessons, only: %i[index show new create edit update]
+      resources :lessons
     end
   end
 

@@ -15,10 +15,7 @@
   <dd><%= @course.instructor.name %></dd>
 </dl>
 
-<%= link_to 'Editar', edit_admin_course_path(@course) %>
-<%= link_to 'Apagar', admin_course_path(@course), method: :delete %>
-<%= link_to 'Ver Aulas',admin_course_lessons_path(@course) %>
-<%= link_to 'Voltar', admin_courses_path %>
+<%= link_to 'Voltar', courses_path %>
 
 <% if @course.lessons.empty? %>
   Nenhuma aula disponível
@@ -28,4 +25,3 @@
     <%= t('lesson.length', count: lesson.length) %>
   <% end %>
 <%end %>
-<%= link_to 'Cadastrar Aulas', new_admin_course_lesson_path(@course) %>

@@ -1,6 +1,6 @@
 module Admin
   class LessonsController < ApplicationController
-    before_action :set_course, only: %i[new create]
+    before_action :set_course, only: %i[new create destroy]
 
     def index
       @lessons = Lesson.where(course_id: params[:course_id])
@@ -34,6 +34,12 @@ module Admin
       else
         render :new
       end
+    end
+
+    def destroy
+      @lesson = Lesson.find(params[:id])
+      @lesson.destroy
+      redirect_to admin_course_path(@lesson), notice: 'Aula apagada com sucesso'
     end
 
     private

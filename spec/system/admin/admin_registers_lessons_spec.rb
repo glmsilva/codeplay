@@ -10,6 +10,9 @@ describe 'Admin register lessons' do
                             enrollment_deadline: '20/12/2033',
                             instructor: instructor,
                             banner: fixture_file_upload(Rails.root.join('spec/fixtures/course.png')))
+    user = User.create!(email: 'jane@test.com.br', password: '123456', is_admin: true)
+
+    login_as user, scope: :user
 
     visit root_path
     click_on 'Cursos'
@@ -28,6 +31,9 @@ describe 'Admin register lessons' do
                             enrollment_deadline: '20/12/2033',
                             instructor: instructor,
                             banner: fixture_file_upload(Rails.root.join('spec/fixtures/course.png')))
+    user = User.create!(email: 'jane@test.com.br', password: '123456', is_admin: true)
+
+    login_as user, scope: :user
 
     visit root_path
     click_on 'Cursos'

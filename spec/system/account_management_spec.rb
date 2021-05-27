@@ -9,9 +9,7 @@ describe 'account management' do
 
       expect(current_path).to eq(new_user_registration_path)
     end
-  end
 
-  context 'registration' do
     it 'with email and password' do
       visit root_path
       click_on 'Registrar-se'
@@ -27,19 +25,41 @@ describe 'account management' do
       expect(page).to have_link('Sair')
     end
 
-    xit 'without valid field' do
+    it 'without valid field' do
+      visit root_path
+      click_on 'Registrar-se'
+      click_on 'Criar conta'
+
+      expect(page).to have_content('não pode ficar em branco', count: 2)
     end
 
-    xit 'password not match confirmation' do
+    it 'password not match confirmation' do
+      visit root_path
+      click_on 'Registrar-se'
+      fill_in 'Email', with: 'jane@test.com.br'
+      fill_in 'Senha', with: 'abcdefg'
+      fill_in 'Confirmação de Senha', with: 'abcdex'
+      click_on 'Criar conta'
+
+      expect(page).to have_content('Confirmação de Senha não é igual a Senha')
     end
 
-    xit 'with email not unique' do
+    it 'with email not unique' do
+      User.create!(email: 'jane@test.com.br', password: '123456', is_admin: false)
+      visit root_path
+      click_on 'Registrar-se'
+      fill_in 'Email', with: 'jane@test.com.br'
+      fill_in 'Senha', with: 'abcdefg'
+      fill_in 'Confirmação de Senha', with: 'abcdefg'
+      click_on 'Criar conta'
+
+      expect(page).to have_content('Email já está em uso')
     end
   end
 
   context 'sign in' do
     it 'with email and password' do
-      User.create!(email: 'jane@test.com.br', password: '123456', status: 2)
+      User.create!(email: 'jane@test.com.br', password: '123456', is_admin: false)
 
       visit root_path
       click_on 'Entrar'
@@ -57,13 +77,23 @@ describe 'account management' do
       expect(page).to have_link('Sair')
     end
 
-    xit 'without valid field' do
+    it 'without valid field' do
+      User.create!(email: 'jane@test.com.br', password: '123456', is_admin: false)
+
+      visit root_path
+      click_on 'Entrar'
+      fill_in 'Email', with: 'jane@test.com.br'
+      fill_in 'Senha', with: 'abcdefg'
+      within 'div#login' do
+        click_on 'Entrar'
+      end
+      expect(page).to have_content('Email ou senha inválida')
     end
   end
 
   context 'logout' do
     it 'successfully' do
-      user = User.create!(email: 'jane@test.com.br', password: '123456', status: 2)
+      user = User.create!(email: 'jane@test.com.br', password: '123456')
 
       login_as user, scope: :user
       visit root_path

@@ -2,6 +2,10 @@ require 'rails_helper'
 
 describe 'Admin registers courses' do
   it 'from index page' do
+
+    user = User.create!(email: 'jane@test.com.br', password: '123456', is_admin: true)
+
+    login_as user, scope: :user
     visit root_path
     click_on 'Cursos'
 
@@ -12,6 +16,9 @@ describe 'Admin registers courses' do
   it 'successfully' do
     instructor = Instructor.create!(name: 'Fulano Sicrano',
                                     email: 'fulano@codeplay.com.br')
+    user = User.create!(email: 'jane@test.com.br', password: '123456', is_admin: true)
+
+    login_as user, scope: :user
 
     visit root_path
     click_on 'Cursos'
@@ -37,6 +44,9 @@ describe 'Admin registers courses' do
   end
 
   it 'and attributes cannot be blank' do
+    user = User.create!(email: 'jane@test.com.br', password: '123456', is_admin: true)
+
+    login_as user, scope: :user
     visit root_path
     click_on 'Cursos'
     click_on 'Registrar um Curso'
@@ -52,6 +62,9 @@ describe 'Admin registers courses' do
     Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
                    code: 'RUBYBASIC', price: 10,
                    enrollment_deadline: '22/12/2033', instructor: instructor)
+    user = User.create!(email: 'jane@test.com.br', password: '123456', is_admin: true)
+
+    login_as user, scope: :user
 
     visit root_path
     click_on 'Cursos'

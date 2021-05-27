@@ -11,6 +11,9 @@ describe 'Admin view courses' do
                    description: 'Um curso de Ruby on Rails',
                    code: 'RUBYONRAILS', price: 20,
                    enrollment_deadline: '20/12/2033', instructor: instructor)
+    user = User.create!(email: 'jane@test.com.br', password: '123456', status: 1)
+
+    login_as user, scope: :user
 
     visit root_path
     click_on 'Cursos'
@@ -36,6 +39,8 @@ describe 'Admin view courses' do
                    instructor: instructor,
                    banner: fixture_file_upload(Rails.root.join('spec/fixtures/course.png')))
 
+
+
     visit admin_courses_path
     click_on 'Ruby on Rails'
 
@@ -60,6 +65,9 @@ describe 'Admin view courses' do
     Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
                    code: 'RUBYBASIC', price: 10,
                    enrollment_deadline: '22/12/2033', instructor: instructor)
+    user = User.create!(email: 'jane@test.com.br', password: '123456', status: 1)
+
+    login_as user, scope: :user
 
     visit root_path
     click_on 'Cursos'
@@ -74,6 +82,9 @@ describe 'Admin view courses' do
     Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
                    code: 'RUBYBASIC', price: 10,
                    enrollment_deadline: '22/12/2033', instructor: instructor)
+    user = User.create!(email: 'jane@test.com.br', password: '123456', is_admin: true)
+
+    login_as user, scope: :user
 
     visit root_path
     click_on 'Cursos'
