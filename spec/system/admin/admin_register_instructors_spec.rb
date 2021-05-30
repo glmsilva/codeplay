@@ -2,6 +2,10 @@ require 'rails_helper'
 
 describe 'Admin register instructors' do
   it 'from index page' do
+    user = User.create!(email: 'jane@test.com.br', password: '123456', status: 1, is_admin: true)
+
+    login_as user, scope: :user
+
     visit root_path
     click_on 'Professores'
 
@@ -10,6 +14,10 @@ describe 'Admin register instructors' do
   end
 
   it 'successfully' do
+    user = User.create!(email: 'jane@test.com.br', password: '123456', status: 1, is_admin: true)
+
+    login_as user, scope: :user
+
     visit root_path
     click_on 'Professores'
     click_on 'Registrar um Professor'
@@ -29,6 +37,10 @@ describe 'Admin register instructors' do
   end
 
   it 'and attributes cannot be blank' do
+    user = User.create!(email: 'jane@test.com.br', password: '123456', status: 1, is_admin: true)
+
+    login_as user, scope: :user
+
     visit admin_instructors_path
     click_on 'Registrar um Professor'
     click_on 'Cadastrar Professor'
@@ -37,6 +49,9 @@ describe 'Admin register instructors' do
   end
 
   it 'and email must be unique' do
+    user = User.create!(email: 'jane@test.com.br', password: '123456', status: 1, is_admin: true)
+
+    login_as user, scope: :user
 
     Instructor.create!(name: 'Fulano Sicrano',
                        bio: 'Um professor de Ruby',

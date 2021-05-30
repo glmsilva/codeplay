@@ -44,6 +44,9 @@ describe 'Admin view lessons' do
                             enrollment_deadline: '20/12/2033',
                             instructor: instructor,
                             banner: fixture_file_upload(Rails.root.join('spec/fixtures/course.png')))
+    user = User.create!(email: 'jane@test.com.br', password: '123456', status: 1, is_admin: true)
+
+    login_as user, scope: :user
 
     visit admin_course_path(course)
 
@@ -65,6 +68,9 @@ describe 'Admin view lessons' do
                    length: 60,
                    content: 'Aprenda sobre Ruby, uma linguagem de script orientada a objetos que você pode usar sozinha ou como parte do framework web Ruby on Rails.',
                    course: course )
+    user = User.create!(email: 'jane@test.com.br', password: '123456', status: 1, is_admin: true)
+
+    login_as user, scope: :user
 
     visit admin_course_path(course)
     click_on 'Ruby Fundamentos'

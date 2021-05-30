@@ -5,7 +5,9 @@ describe "Admin update instructors" do
     instructor = Instructor.create!(name: 'John Doe', bio: 'Um professor de Ruby',
                        email: 'johndoe@codeplay.com.br',
                        profile_picture: fixture_file_upload(Rails.root.join('spec/fixtures/instructor_image.png')))
+    user = User.create!(email: 'jane@test.com.br', password: '123456', status: 1, is_admin: true)
 
+    login_as user, scope: :user
     visit admin_instructor_path(instructor)
     click_on 'Editar'
     fill_in 'Nome', with: 'João das Neves'

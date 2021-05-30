@@ -1,5 +1,5 @@
 module Admin
-  class LessonsController < ApplicationController
+  class LessonsController < AdminController
     before_action :set_course, only: %i[new create destroy]
 
     def index

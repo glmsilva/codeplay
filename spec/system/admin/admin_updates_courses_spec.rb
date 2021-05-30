@@ -8,6 +8,9 @@ describe 'admin updates courses' do
                             code: 'RUBYBASIC', price: 10,
                             enrollment_deadline: '22/12/2033', instructor: instructor)
     Instructor.create!(name: 'Jane Doe', email: 'jane@codeplay.com.br')
+    user = User.create!(email: 'jane@test.com.br', password: '123456', status: 1, is_admin: true)
+
+    login_as user, scope: :user
 
     visit admin_course_path(course)
     click_on 'Editar'

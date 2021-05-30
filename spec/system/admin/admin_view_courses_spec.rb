@@ -11,7 +11,8 @@ describe 'Admin view courses' do
                    description: 'Um curso de Ruby on Rails',
                    code: 'RUBYONRAILS', price: 20,
                    enrollment_deadline: '20/12/2033', instructor: instructor)
-    user = User.create!(email: 'jane@test.com.br', password: '123456', status: 1)
+
+    user = User.create!(email: 'jane@test.com.br', password: '123456', status: 1, is_admin: true)
 
     login_as user, scope: :user
 
@@ -38,8 +39,9 @@ describe 'Admin view courses' do
                    enrollment_deadline: '20/12/2033',
                    instructor: instructor,
                    banner: fixture_file_upload(Rails.root.join('spec/fixtures/course.png')))
+    user = User.create!(email: 'jane@test.com.br', password: '123456', status: 1, is_admin: true)
 
-
+    login_as user, scope: :user
 
     visit admin_courses_path
     click_on 'Ruby on Rails'
@@ -54,6 +56,9 @@ describe 'Admin view courses' do
   end
 
   it 'and no course is available' do
+    user = User.create!(email: 'jane@test.com.br', password: '123456', status: 1, is_admin: true)
+
+    login_as user, scope: :user
     visit admin_courses_path
 
     expect(page).to have_content('Nenhum curso disponível')

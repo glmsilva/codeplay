@@ -2,6 +2,10 @@ require 'rails_helper'
 
 describe 'Admin view instructors' do
   it 'succesfully' do
+    user = User.create!(email: 'jane@test.com.br', password: '123456', status: 1, is_admin: true)
+
+    login_as user, scope: :user
+
     Instructor.create!(name: 'Fulano Sicrano',
                        email: 'fulano@codeplay.com.br',
                        bio: 'Um professor da codeplay',
@@ -19,7 +23,9 @@ describe 'Admin view instructors' do
                        email: 'fulano@codeplay.com.br',
                        bio: 'Um professor da codeplay',
                        profile_picture: fixture_file_upload(Rails.root.join('spec/fixtures/instructor_image.png')))
+    user = User.create!(email: 'jane@test.com.br', password: '123456', status: 1, is_admin: true)
 
+    login_as user, scope: :user
     visit admin_instructors_path
     click_on 'Fulano Sicrano'
 
@@ -35,7 +41,9 @@ describe 'Admin view instructors' do
                        email: 'fulano@codeplay.com.br',
                        bio: 'Um professor da codeplay',
                        profile_picture: fixture_file_upload(Rails.root.join('spec/fixtures/instructor_image.png')))
+    user = User.create!(email: 'jane@test.com.br', password: '123456', status: 1, is_admin: true)
 
+    login_as user, scope: :user
     visit admin_instructors_path
     click_on 'Voltar'
 
@@ -47,7 +55,9 @@ describe 'Admin view instructors' do
                        email: 'fulano@codeplay.com.br',
                        bio: 'Um professor da codeplay',
                        profile_picture: fixture_file_upload(Rails.root.join('spec/fixtures/instructor_image.png')))
+    user = User.create!(email: 'jane@test.com.br', password: '123456', status: 1, is_admin: true)
 
+    login_as user, scope: :user
     visit admin_instructors_path
     click_on 'Fulano Sicrano'
     click_on 'Voltar'

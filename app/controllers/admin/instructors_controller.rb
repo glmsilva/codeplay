@@ -1,5 +1,5 @@
 module Admin
-  class InstructorsController < ApplicationController
+  class InstructorsController < AdminController
     def index
       @instructors = Instructor.all
     end
