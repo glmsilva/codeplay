@@ -19,7 +19,8 @@ describe 'Admin view lessons' do
     Lesson.create!(name: 'Ruby Fundamentos',
                    length: 60,
                    content: 'Aprenda sobre Ruby, uma linguagem de script orientada a objetos que você pode usar sozinha ou como parte do framework web Ruby on Rails.',
-                   course: course )
+                   course: course,
+                   slug: 'ruby-fundamentos')
     Lesson.create!(name: 'Javascript',
                    length: 40,
                    content: 'Um curso qualquer',
@@ -67,7 +68,7 @@ describe 'Admin view lessons' do
     Lesson.create!(name: 'Ruby Fundamentos',
                    length: 60,
                    content: 'Aprenda sobre Ruby, uma linguagem de script orientada a objetos que você pode usar sozinha ou como parte do framework web Ruby on Rails.',
-                   course: course )
+                   course: course)
     user = User.create!(email: 'jane@test.com.br', password: '123456', status: 1, is_admin: true)
 
     login_as user, scope: :user

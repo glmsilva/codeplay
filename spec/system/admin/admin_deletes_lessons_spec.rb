@@ -9,7 +9,8 @@ describe 'Admin deletes lessons' do
                             code: 'RUBYONRAILS', price: 20,
                             enrollment_deadline: '20/12/2033',
                             instructor: instructor,
-                            banner: fixture_file_upload(Rails.root.join('spec/fixtures/course.png')))
+                            banner: fixture_file_upload(Rails.root.join('spec/fixtures/course.png')),
+                            slug: 'ruby-fundamentos')
     lesson = Lesson.create!(name: 'Ruby Fundamentos',
                             length: 60,
                             content: 'Aprenda sobre Ruby, uma linguagem de script orientada a objetos que você pode usar sozinha ou como parte do framework web Ruby on Rails.',

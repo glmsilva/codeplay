@@ -7,7 +7,6 @@ module Admin
 
     def admin_access
       redirect_to root_path unless current_user.admin?
-
     end
   end
 end

@@ -10,20 +10,25 @@ describe 'Admin updates lesson' do
                             enrollment_deadline: '20/12/2033',
                             instructor: instructor,
                             banner: fixture_file_upload(Rails.root.join('spec/fixtures/course.png')))
+    Lesson.create!(name: 'Javascript Fundamentos',
+                   length: 50,
+                   content: 'Aprenda javascript',
+                   course: course)
     lesson = Lesson.create!(name: 'Ruby Fundamentos',
-                   length: 60,
-                   content: 'Aprenda sobre Ruby, uma linguagem de script orientada a objetos que você pode usar sozinha ou como parte do framework web Ruby on Rails.',
-                   course: course )
+                            length: 60,
+                            content: 'Aprenda sobre Ruby, uma linguagem de script orientada a objetos que você pode usar sozinha ou como parte do framework web Ruby on Rails.',
+                            course: course)
     user = User.create!(email: 'jane@test.com.br', password: '123456', status: 1, is_admin: true)
 
     login_as user, scope: :user
-
-    visit admin_course_path(course)
+    visit root_path
+    click_on 'Cursos'
+    click_on 'Ruby on Rails'
     click_on 'Ruby Fundamentos'
 
     expect(current_path).to eq(admin_course_lesson_path(course, lesson))
     click_on 'Editar'
-    expect(current_path).to eq(edit_admin_course_lesson_path(course,lesson))
+    expect(current_path).to eq(edit_admin_course_lesson_path(course, lesson))
 
     fill_in 'Duração', with: 120
 

@@ -1,5 +1,5 @@
 <%= @lesson.name %>
 <%= t('lesson.length',count: @lesson.length) %>
 <%= @lesson.content %>
-<%= link_to 'Editar', edit_admin_course_lesson_path(@lesson), class: 'btn btn-primary' %>
-<%= link_to 'Apagar', admin_course_lesson_path(@lesson), method: :delete, class: 'btn btn-primary' %>
+<%= link_to 'Editar', edit_admin_course_lesson_path(@course, @lesson), class: 'btn btn-primary' %>
+<%= link_to 'Apagar', admin_course_lesson_path(@course, @lesson), method: :delete, class: 'btn btn-primary' %>

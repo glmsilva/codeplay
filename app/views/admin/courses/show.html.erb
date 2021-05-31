@@ -24,7 +24,7 @@
   Nenhuma aula disponível
 <% else %>
   <% @course.lessons.each do |lesson| %>
-    <%= link_to lesson.name, admin_course_lesson_path(lesson) %>
+    <%= link_to lesson.name, admin_course_lesson_path(@course,lesson) %>
     <%= t('lesson.length', count: lesson.length) %>
   <% end %>
 <%end %>

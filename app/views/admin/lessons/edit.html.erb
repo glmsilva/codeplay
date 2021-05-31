@@ -1,4 +1,4 @@
-<%= form_with model: [:admin, :course, @lesson] do |f| %>
+<%= form_with model: [:admin, @course, @lesson] do |f| %>
   <%= f.label :name, 'Nome' %>
   <%= f.text_field :name %>
   <% @lesson.errors.messages_for(:name).each do |message| %>
@@ -16,5 +16,3 @@
   <%end %>
   <%= f.submit 'Salvar' %>
 <%end %>
-
-d
