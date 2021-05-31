@@ -116,9 +116,31 @@ describe 'students views courses' do
     expect(page).to have_content('Curso comprado com sucesso')
     expect(current_path).to eq my_courses_courses_path
     expect(page).to have_content('Ruby on Rails')
+    expect(page).to have_content('R$ 20,00')
     expect(page).not_to have_content('Elixir')
+    expect(page).not_to have_content(other_course.price)
+  end
 
+  it 'and cannot buy a course twice' do
+    instructor = Instructor.create!(name: 'Fulano Sicrano',
+                                    email: 'fulano@codeplay.com.br')
+    avaialable_course = Course.create!(name: 'Ruby on Rails',
+                                       description: 'Um curso de Ruby on Rails',
+                                       code: 'RUBYONRAILS',
+                                       price: 20,
+                                       enrollment_deadline: 1.month.from_now,
+                                       instructor: instructor,
+                                       banner: fixture_file_upload(Rails.root.join('spec/fixtures/course.png')))
 
+    user = User.create!(email: 'jane@test.com.br', password: '123456', status: 1, is_admin: false)
+    Enrollment.create!(user: user, course: avaialable_course, price: avaialable_course.price)
+    login_as user, scope: :user
+    visit root_path
+    click_on 'Cursos'
+    click_on avaialable_course.name
+
+    expect(page).not_to have_link('Comprar')
+    expect(page).to have_link('Ver curso')
 
   end
 end

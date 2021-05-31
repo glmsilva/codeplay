@@ -15,7 +15,11 @@
   <dd><%= @course.instructor.name %></dd>
 </dl>
 <% if user_signed_in? %>
-  <%= link_to 'Comprar', enroll_course_path, method: :post, class:'btn btn-primary' %>
+  <% if current_user.courses.include?(@course) %>
+    <%=  link_to 'Ver curso', my_courses_courses_path %>
+  <% else  %>
+    <%= link_to 'Comprar', enroll_course_path, method: :post, class: 'btn btn-primary' %>
+  <% end %>
 <%else %>
   <%= link_to 'Comprar', new_user_session_path %>
 <%end%>
