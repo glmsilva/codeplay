@@ -1,5 +1,7 @@
+<h1>Meus cursos</h1>
 <% @enrollments.each do |enrollment| %>
   <%= enrollment.course.name %>
-  <%= number_to_currency enrollment.course.price %>
   <%= link_to 'Ver aulas', course_lessons_path(enrollment.course) %>
-<% end %>
+  Comprado em <%= enrollment.created_at %> por <%= number_to_currency enrollment.price %>
+
+<%end %>

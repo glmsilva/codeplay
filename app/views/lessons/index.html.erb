@@ -1,0 +1,5 @@
+<% @course.lessons.each do |lesson| %>
+  <%= link_to lesson.name, course_lesson_path(@course, lesson)  %>
+  <%= t('lesson.length', count: lesson.length) %>
+  <%= lesson.content %>
+<% end %>

@@ -110,7 +110,7 @@ describe 'students views courses' do
     login_as user, scope: :user
     visit root_path
     click_on 'Cursos'
-    click_on avaialable_course.name
+    click_on 'Ruby on Rails'
     click_on 'Comprar'
 
     expect(page).to have_content('Curso comprado com sucesso')
@@ -140,7 +140,50 @@ describe 'students views courses' do
     click_on avaialable_course.name
 
     expect(page).not_to have_link('Comprar')
-    expect(page).to have_link('Ver curso')
+    expect(page).to have_link('Ver aulas')
 
+  end
+
+  it 'and view lessons link from courses page' do
+    instructor = Instructor.create!(name: 'Fulano Sicrano',
+                                    email: 'fulano@codeplay.com.br')
+    avaialable_course = Course.create!(name: 'Ruby on Rails',
+                                       description: 'Um curso de Ruby on Rails',
+                                       code: 'RUBYONRAILS',
+                                       price: 20,
+                                       enrollment_deadline: 1.month.from_now,
+                                       instructor: instructor,
+                                       banner: fixture_file_upload(Rails.root.join('spec/fixtures/course.png')))
+
+    user = User.create!(email: 'jane@test.com.br', password: '123456', status: 1, is_admin: false)
+    Enrollment.create!(user: user, course: avaialable_course, price: avaialable_course.price)
+
+    login_as user, scope: :user
+    visit root_path
+    click_on 'Cursos'
+
+    expect(page).not_to have_link('Comprar')
+    expect(page).to have_link('Ver aulas')
+
+  end
+
+  it 'and view lessons link from my courses page' do
+    instructor = Instructor.create!(name: 'Fulano Sicrano',
+                                    email: 'fulano@codeplay.com.br')
+    avaialable_course = Course.create!(name: 'Ruby on Rails',
+                                       description: 'Um curso de Ruby on Rails',
+                                       code: 'RUBYONRAILS',
+                                       price: 20,
+                                       enrollment_deadline: 1.month.from_now,
+                                       instructor: instructor,
+                                       banner: fixture_file_upload(Rails.root.join('spec/fixtures/course.png')))
+
+    user = User.create!(email: 'jane@test.com.br', password: '123456', status: 1, is_admin: false)
+    Enrollment.create!(user: user, course: avaialable_course, price: avaialable_course.price)
+
+    login_as user, scope: :user
+    visit root_path
+    click_on 'Meus cursos'
+    expect(page).to have_link('Ver aulas')
   end
 end

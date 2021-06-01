@@ -6,6 +6,15 @@
   <h1><%= link_to course.name, course_path(course) %></h1>
   <p><%= course.description %></p>
   <p><%= number_to_currency course.price %></p>
+  <% if user_signed_in? %>
+    <% if current_user.courses.include?(course) %>
+      <%= link_to 'Ver aulas', course_lessons_path(course) %>
+    <% else  %>
+      <%= link_to 'Comprar', enroll_course_path(course), method: :post, class: 'btn btn-primary' %>
+    <% end %>
+  <%else %>
+    <%= link_to 'Comprar', new_user_session_path %>
+  <%end%>
 <% end %>
 
 <%= button_to 'Voltar', root_path, method: :get %>
