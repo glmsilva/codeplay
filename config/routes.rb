@@ -11,7 +11,10 @@ Rails.application.routes.draw do
   end
 
   resources :courses, only: %i[index show] do
-    resources :lessons, only: %i[index show]
+    resources :lessons, only: %i[index show] do
+      post 'attend_lesson', on: :member
+    end
+
     post 'enroll', on: :member
     get 'search', on: :collection
     get 'my_courses', on: :collection

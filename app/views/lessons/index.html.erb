@@ -2,4 +2,9 @@
   <%= link_to lesson.name, course_lesson_path(@course, lesson)  %>
   <%= t('lesson.length', count: lesson.length) %>
   <%= lesson.content %>
+  <% if current_user.attend_lesson.exists?(lesson.id) == true%>
+    <p>Aula concluída</p>
+  <% else %>
+    <%= link_to 'Marcar aula como concluída', attend_lesson_course_lesson_path(@course, lesson), method: :post  %>
+  <%end %>
 <% end %>

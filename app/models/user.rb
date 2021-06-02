@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   has_many :enrollments
   has_many :courses, through: :enrollments
+  has_many :attend_lesson
+  has_many :lessons, through: :attend_lesson
 
   def admin?
     self.is_admin
