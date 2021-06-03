@@ -19,4 +19,6 @@ Rails.application.routes.draw do
     get 'search', on: :collection
     get 'my_courses', on: :collection
   end
+
+
 end

@@ -1,0 +1,18 @@
+<% if @courses.empty? %>
+  <% flash.each do |nome, mensagem| %>
+    <%= content_tag :div, mensagem, class: 'alert alert-dismissible alert-warning' %>
+  <% end %>
+<%end %>
+
+<% @courses.each do |course| %>
+<%= course.name %>
+  <% if user_signed_in? %>
+    <% if current_user.courses.include?(course) %>
+      <%= link_to 'Ver aulas', course_lessons_path(course) %>
+    <% else  %>
+      <%= link_to 'Comprar', enroll_course_path(course), method: :post, class: 'btn btn-primary' %>
+    <% end %>
+  <%else %>
+    <%= link_to 'Comprar', new_user_session_path %>
+  <%end%>
+<% end %>
