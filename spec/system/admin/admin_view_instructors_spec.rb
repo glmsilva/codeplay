@@ -65,4 +65,58 @@ describe 'Admin view instructors' do
     expect(current_path).to eq admin_instructors_path
   end
 
+  it 'and view only inactives instructors' do
+    user = User.create!(email: 'jane@test.com.br', password: '123456', status: 1, is_admin: true)
+
+    login_as user, scope: :user
+
+    Instructor.create!(name: 'Fulano Sicrano',
+                       email: 'fulano@codeplay.com.br',
+                       bio: 'Um professor da codeplay',
+                       status: 1,
+                       profile_picture: fixture_file_upload(Rails.root.join('spec/fixtures/instructor_image.png')))
+
+    visit admin_instructors_path
+    click_on 'Ver inativos'
+
+    expect(page).to have_content('Fulano Sicrano')
+  end
+
+  it 'and active an instructor' do
+    user = User.create!(email: 'jane@test.com.br', password: '123456', status: 1, is_admin: true)
+
+    login_as user, scope: :user
+
+    Instructor.create!(name: 'Fulano Sicrano',
+                       email: 'fulano@codeplay.com.br',
+                       bio: 'Um professor da codeplay',
+                       status: 1,
+                       profile_picture: fixture_file_upload(Rails.root.join('spec/fixtures/instructor_image.png')))
+
+    visit admin_instructors_path
+    click_on 'Ver inativos'
+    click_on 'Tornar ativo'
+
+    expect(page).to have_content('Fulano Sicrano')
+    expect(page).to have_content('Professor ativado com sucesso')
+  end
+
+  it 'and inactive an instructor' do
+    user = User.create!(email: 'jane@test.com.br', password: '123456', status: 1, is_admin: true)
+
+    login_as user, scope: :user
+
+    Instructor.create!(name: 'Fulano Sicrano',
+                       email: 'fulano@codeplay.com.br',
+                       bio: 'Um professor da codeplay',
+                       status: 0,
+                       profile_picture: fixture_file_upload(Rails.root.join('spec/fixtures/instructor_image.png')))
+
+    visit admin_instructors_path
+    click_on 'Tornar inativo'
+
+    expect(page).not_to have_content('Fulano Sicrano')
+    expect(page).to have_content('Professor inativado com sucesso')
+  end
+
 end

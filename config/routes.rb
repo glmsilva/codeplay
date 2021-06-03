@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   root 'home#index'
 
   namespace :admin do
-    resources :instructors
+    resources :instructors do
+      get 'show_inactive', on: :collection
+      post 'active_instructor', on: :member
+      post 'inactive_instructor', on: :member
+    end
     resources :courses do
       resources :lessons
       get 'search', on: :collection

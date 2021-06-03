@@ -3,7 +3,11 @@
     <%= image_tag instructor.profile_picture %>
   <% end %>
   <%= link_to instructor.name, admin_instructor_path(instructor) %>
+  <%= link_to 'Tornar inativo', inactive_instructor_admin_instructor_path(instructor), method: :post  %>
+
 <% end %>
 
 <%= link_to 'Registrar um Professor', new_admin_instructor_path %>
+<%= link_to 'Ver inativos', show_inactive_admin_instructors_path, method: :get  %>
+
 <%= link_to 'Voltar', root_path %>

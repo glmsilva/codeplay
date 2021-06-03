@@ -10,7 +10,7 @@ module Admin
   end
 
   def new
-    @instructors = Instructor.all
+    @instructors = Instructor.where(status: 0)
     @course = Course.new
   end
 
@@ -19,13 +19,13 @@ module Admin
     if @course.save
       redirect_to admin_course_path(@course)
     else
-      @instructors = Instructor.all
+      @instructors = Instructor.where(status: 0)
       render :new
     end
   end
 
   def edit
-    @instructors = Instructor.all
+    @instructors = Instructor.where(status: 0)
   end
 
   def update

@@ -1,7 +1,8 @@
 module Admin
   class InstructorsController < AdminController
     def index
-      @instructors = Instructor.all
+      @instructors = Instructor.where(status: 0 )
+
     end
 
     def show
@@ -36,6 +37,23 @@ module Admin
       @instructor = Instructor.find(params[:id])
       @instructor.destroy
       redirect_to admin_instructors_path, notice: 'Professor apagado com sucesso'
+    end
+
+    def show_inactive
+      @inactive_instructors = Instructor.where(status: 1)
+    end
+
+    def active_instructor
+      @instructor = Instructor.find(params[:id])
+      @instructor.active!
+
+      redirect_to admin_instructor_path(@instructor), notice: 'Professor ativado com sucesso'
+    end
+
+    def inactive_instructor
+      @instructor = Instructor.find(params[:id])
+      @instructor.inactive!
+      redirect_to admin_instructors_path, notice: 'Professor inativado com sucesso'
     end
 
     private

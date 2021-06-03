@@ -5,6 +5,8 @@ class Instructor < ApplicationRecord
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
 
+  enum status: { active: 0, inactive: 1 }
+
   def display_name
     "#{name} - #{email}"
   end
