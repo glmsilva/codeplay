@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     resources :courses do
       resources :lessons
       get 'search', on: :collection
+      post 'publish', on: :member
+      get 'drafts', on: :collection
     end
   end
 

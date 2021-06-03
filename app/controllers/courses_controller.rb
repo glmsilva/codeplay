@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
 
   def index
-    @courses = Course.where(enrollment_deadline: Date.today..)
+    @courses = Course.where(enrollment_deadline: Date.today.., status: :published)
   end
 
   def show

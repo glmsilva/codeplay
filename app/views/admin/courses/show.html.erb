@@ -13,6 +13,15 @@
   <dd><%= l @course.enrollment_deadline %></dd>
   <dt>Instrutor(a)</dt>
   <dd><%= @course.instructor.name %></dd>
+  <dd>
+    <%if @course.published? %>
+      Publicado
+    <% else %>
+      Rascunho
+      <%= link_to 'Publicar', publish_admin_course_path(@course), method: :post %>
+    <%end %>
+  </dd>
+
 </dl>
 
 <%= link_to 'Editar', edit_admin_course_path(@course) %>

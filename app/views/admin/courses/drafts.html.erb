@@ -6,8 +6,7 @@
   <h1><%= link_to course.name, admin_course_path(course) %></h1>
   <p><%= course.description %></p>
   <p><%= number_to_currency course.price %></p>
+  <%= link_to 'Publicar', publish_admin_course_path(course), method: :post %>
 <% end %>
 
-<%= link_to 'Registrar um Curso', new_admin_course_path %>
-<%= link_to 'Ver rascunhos', drafts_admin_courses_path %>
 <%= button_to 'Voltar', root_path, method: :get %>

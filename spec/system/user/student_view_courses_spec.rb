@@ -152,6 +152,7 @@ describe 'students views courses' do
                                        code: 'RUBYONRAILS',
                                        price: 20,
                                        enrollment_deadline: 1.month.from_now,
+                                       status: 0,
                                        instructor: instructor,
                                        banner: fixture_file_upload(Rails.root.join('spec/fixtures/course.png')))
 

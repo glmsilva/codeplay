@@ -9,6 +9,7 @@ describe 'Admin register lessons' do
                             code: 'RUBYONRAILS', price: 20,
                             enrollment_deadline: '20/12/2033',
                             instructor: instructor,
+                            status: 0,
                             banner: fixture_file_upload(Rails.root.join('spec/fixtures/course.png')))
     user = User.create!(email: 'jane@test.com.br', password: '123456', is_admin: true)
 
@@ -30,6 +31,7 @@ describe 'Admin register lessons' do
                             code: 'RUBYONRAILS', price: 20,
                             enrollment_deadline: '20/12/2033',
                             instructor: instructor,
+                            status: 0,
                             banner: fixture_file_upload(Rails.root.join('spec/fixtures/course.png')))
     user = User.create!(email: 'jane@test.com.br', password: '123456', is_admin: true)
 
