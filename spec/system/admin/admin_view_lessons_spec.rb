@@ -4,18 +4,21 @@ describe 'Admin view lessons' do
   it 'successfully' do
     instructor = Instructor.create!(name: 'Fulano Sicrano',
                                     email: 'fulano@codeplay.com.br')
+    category = Category.create!(name: 'Web')
     course = Course.create!(name: 'Ruby on Rails',
-                   description: 'Um curso de Ruby on Rails',
-                   code: 'RUBYONRAILS', price: 20,
-                   enrollment_deadline: '20/12/2033',
-                   instructor: instructor,
-                   banner: fixture_file_upload(Rails.root.join('spec/fixtures/course.png')))
+                            description: 'Um curso de Ruby on Rails',
+                            code: 'RUBYONRAILS', price: 20,
+                            enrollment_deadline: '20/12/2033',
+                            instructor: instructor, 
+                            category: category,
+                            banner: fixture_file_upload(Rails.root.join('spec/fixtures/course.png')))
     course2 = Course.create!(name: 'Javascript',
-                   description: 'Um curso de Javascript',
-                   code: 'Javascript', price: 20,
-                   enrollment_deadline: '20/12/2033',
-                   instructor: instructor,
-                   banner: fixture_file_upload(Rails.root.join('spec/fixtures/course.png')))
+                             description: 'Um curso de Javascript',
+                             code: 'Javascript', price: 20,
+                             enrollment_deadline: '20/12/2033',
+                             instructor: instructor,
+                             category: category,
+                             banner: fixture_file_upload(Rails.root.join('spec/fixtures/course.png')))
     Lesson.create!(name: 'Ruby Fundamentos',
                    length: 60,
                    content: 'Aprenda sobre Ruby, uma linguagem de script orientada a objetos que você pode usar sozinha ou como parte do framework web Ruby on Rails.',
@@ -39,11 +42,13 @@ describe 'Admin view lessons' do
   it 'and no lessons is available' do
     instructor = Instructor.create!(name: 'Fulano Sicrano',
                                     email: 'fulano@codeplay.com.br')
+    category = Category.create!(name: 'Web')
     course = Course.create!(name: 'Ruby on Rails',
                             description: 'Um curso de Ruby on Rails',
                             code: 'RUBYONRAILS', price: 20,
                             enrollment_deadline: '20/12/2033',
                             instructor: instructor,
+                            category: category,
                             banner: fixture_file_upload(Rails.root.join('spec/fixtures/course.png')))
     user = User.create!(email: 'jane@test.com.br', password: '123456', status: 1, is_admin: true)
 
@@ -58,11 +63,13 @@ describe 'Admin view lessons' do
   it 'and view details' do
     instructor = Instructor.create!(name: 'Fulano Sicrano',
                                     email: 'fulano@codeplay.com.br')
+    category = Category.create!(name: 'Web')
     course = Course.create!(name: 'Ruby on Rails',
                             description: 'Um curso de Ruby on Rails',
                             code: 'RUBYONRAILS', price: 20,
                             enrollment_deadline: '20/12/2033',
                             instructor: instructor,
+                            category: category,
                             banner: fixture_file_upload(Rails.root.join('spec/fixtures/course.png')))
 
     Lesson.create!(name: 'Ruby Fundamentos',

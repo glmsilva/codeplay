@@ -22,6 +22,8 @@
   <%= f.date_field :enrollment_deadline %>
   <%= f.label :instructor_id, 'Instrutor(a)' %>
   <%= f.collection_select :instructor_id, instructors, :id, :display_name %>
+  <%= f.label :category_id, 'Categoria' %>
+  <%= f.collection_select :category_id, Category.all, :id, :name %>
   <%= check_box_tag(:status, 'draft') %>
   <%= label_tag(:status, 'Rascunho') %>
   <%= f.label :banner, 'Banner do Curso' %>

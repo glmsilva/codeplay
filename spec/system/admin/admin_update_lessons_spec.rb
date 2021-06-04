@@ -4,12 +4,14 @@ describe 'Admin updates lesson' do
   it 'successfully' do
     instructor = Instructor.create!(name: 'Fulano Sicrano',
                                     email: 'fulano@codeplay.com.br')
+    category = Category.create!(name: 'Web')
     course = Course.create!(name: 'Ruby on Rails',
                             description: 'Um curso de Ruby on Rails',
                             code: 'RUBYONRAILS', price: 20,
                             enrollment_deadline: '20/12/2033',
                             instructor: instructor,
                             status: 0,
+                            category: category,
                             banner: fixture_file_upload(Rails.root.join('spec/fixtures/course.png')))
     Lesson.create!(name: 'Javascript Fundamentos',
                    length: 50,

@@ -4,10 +4,12 @@ describe 'Student view lessons' do
   it 'from my courses page' do
     instructor = Instructor.create!(name: 'Fulano Sicrano',
                                     email: 'fulano@codeplay.com.br')
+    category = Category.create!(name: 'Web')
     avaialable_course = Course.create!(name: 'Ruby on Rails',
                                        description: 'Um curso de Ruby on Rails',
                                        code: 'RUBYONRAILS',
                                        price: 20,
+                                       category: category,
                                        enrollment_deadline: 1.month.from_now,
                                        instructor: instructor,
                                        banner: fixture_file_upload(Rails.root.join('spec/fixtures/course.png')))
@@ -32,10 +34,12 @@ describe 'Student view lessons' do
 
     instructor = Instructor.create!(name: 'Fulano Sicrano',
                                     email: 'fulano@codeplay.com.br')
+    category = Category.create!(name: 'Web')
     avaialable_course = Course.create!(name: 'Ruby on Rails',
                                        description: 'Um curso de Ruby on Rails',
                                        code: 'RUBYONRAILS',
                                        price: 20,
+                                       category: category,
                                        enrollment_deadline: 1.month.from_now,
                                        instructor: instructor,
                                        banner: fixture_file_upload(Rails.root.join('spec/fixtures/course.png')))
@@ -60,10 +64,12 @@ describe 'Student view lessons' do
   it 'and view details' do
     instructor = Instructor.create!(name: 'Fulano Sicrano',
                                     email: 'fulano@codeplay.com.br')
+    category = Category.create!(name: 'Web')
     avaialable_course = Course.create!(name: 'Ruby on Rails',
                                        description: 'Um curso de Ruby on Rails',
                                        code: 'RUBYONRAILS',
                                        price: 20,
+                                       category: category,
                                        enrollment_deadline: 1.month.from_now,
                                        instructor: instructor,
                                        banner: fixture_file_upload(Rails.root.join('spec/fixtures/course.png')))

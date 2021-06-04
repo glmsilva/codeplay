@@ -18,11 +18,13 @@ describe 'Visitor visit homepage' do
   it 'and search for a course' do
     instructor = Instructor.create!(name: 'Fulano Sicrano',
                                     email: 'fulano@codeplay.com.br')
+    category = Category.create!(name: 'Web')
     course = Course.create!(name: 'Ruby on Rails',
                                        description: 'Um curso de Ruby on Rails',
                                        code: 'RUBYONRAILS',
                                        price: 20,
                                        enrollment_deadline: 1.month.from_now,
+                                       category: category,
                                        instructor: instructor,
                                        banner: fixture_file_upload(Rails.root.join('spec/fixtures/course.png')))
 
@@ -37,11 +39,13 @@ describe 'Visitor visit homepage' do
   it 'and no courses is available' do
     instructor = Instructor.create!(name: 'Fulano Sicrano',
                                     email: 'fulano@codeplay.com.br')
+    category = Category.create!(name: 'Web')
     course = Course.create!(name: 'Ruby on Rails',
                             description: 'Um curso de Ruby on Rails',
                             code: 'RUBYONRAILS',
                             price: 20,
                             enrollment_deadline: 1.day.ago,
+                            category: category,
                             instructor: instructor,
                             banner: fixture_file_upload(Rails.root.join('spec/fixtures/course.png')))
 

@@ -4,11 +4,13 @@ describe 'Admin deletes lessons' do
   it 'successfully' do
     instructor = Instructor.create!(name: 'Fulano Sicrano',
                                     email: 'fulano@codeplay.com.br')
+    category = Category.create!(name: 'Web')
     course = Course.create!(name: 'Ruby on Rails',
                             description: 'Um curso de Ruby on Rails',
                             code: 'RUBYONRAILS', price: 20,
                             enrollment_deadline: '20/12/2033',
                             instructor: instructor,
+                            category: category,
                             banner: fixture_file_upload(Rails.root.join('spec/fixtures/course.png')),
                             slug: 'ruby-fundamentos')
     lesson = Lesson.create!(name: 'Ruby Fundamentos',

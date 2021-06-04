@@ -58,7 +58,7 @@ module Admin
       params
         .require(:course)
         .permit(:name, :description, :code, :price, :instructor_id,
-                :enrollment_deadline, :status, :banner)
+                :enrollment_deadline, :status, :category, :banner)
     end
   end
 end

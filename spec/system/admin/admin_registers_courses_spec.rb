@@ -17,6 +17,8 @@ describe 'Admin registers courses' do
     instructor = Instructor.create!(name: 'Fulano Sicrano',
                                     email: 'fulano@codeplay.com.br')
     user = User.create!(email: 'jane@test.com.br', password: '123456', is_admin: true)
+    Category.create!(name: 'Web')
+    Category.create!(name: 'Mobile')
 
     login_as user, scope: :user
 
@@ -29,6 +31,7 @@ describe 'Admin registers courses' do
     fill_in 'Código', with: 'RUBYONRAILS'
     fill_in 'Preço', with: '30'
     fill_in 'Data limite de matrícula', with: '22/12/2033'
+    select 'Web', from: 'Categoria'
     select "#{instructor.name} - #{instructor.email}", from: 'Instrutor(a)'
     attach_file 'Banner do Curso', Rails.root.join('spec/fixtures/course.png')
     click_on 'Criar curso'
@@ -59,8 +62,11 @@ describe 'Admin registers courses' do
   it 'and code must be unique' do
     instructor = Instructor.create!(name: 'Fulano Sicrano',
                                     email: 'fulano@codeplay.com.br')
+    category =  Category.create!(name: 'Mobile') 
     Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
                    code: 'RUBYBASIC', price: 10,
+                   status: 0,
+                   category: category,
                    enrollment_deadline: '22/12/2033', instructor: instructor)
     user = User.create!(email: 'jane@test.com.br', password: '123456', is_admin: true)
 
@@ -78,6 +84,8 @@ describe 'Admin registers courses' do
   it 'and course are a draft' do
     instructor = Instructor.create!(name: 'Fulano Sicrano',
                                     email: 'fulano@codeplay.com.br')
+    Category.create!(name: 'Web')      
+    Category.create!(name: 'Mobile') 
     user = User.create!(email: 'jane@test.com.br', password: '123456', is_admin: true)
 
     login_as user, scope: :user
@@ -111,9 +119,12 @@ describe 'Admin registers courses' do
   it 'and publish a draft course' do
     instructor = Instructor.create!(name: 'Fulano Sicrano',
                                     email: 'fulano@codeplay.com.br')
+    
+    category = Category.create!(name: 'Web')      
     Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
                    code: 'RUBYBASIC', price: 10,
                    status: 1,
+                   category: category,
                    enrollment_deadline: '22/12/2033', instructor: instructor)
     user = User.create!(email: 'jane@test.com.br', password: '123456', is_admin: true)
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_03_041514) do
+ActiveRecord::Schema.define(version: 2021_06_03_234219) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -49,6 +49,12 @@ ActiveRecord::Schema.define(version: 2021_06_03_041514) do
     t.index ["user_id"], name: "index_attend_lessons_on_user_id"
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "courses", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -60,6 +66,8 @@ ActiveRecord::Schema.define(version: 2021_06_03_041514) do
     t.integer "instructor_id", null: false
     t.string "slug"
     t.integer "status", default: 0
+    t.integer "category_id", default: 1
+    t.index ["category_id"], name: "index_courses_on_category_id"
     t.index ["instructor_id"], name: "index_courses_on_instructor_id"
     t.index ["slug"], name: "index_courses_on_slug", unique: true
   end
@@ -125,6 +133,7 @@ ActiveRecord::Schema.define(version: 2021_06_03_041514) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "attend_lessons", "lessons"
   add_foreign_key "attend_lessons", "users"
+  add_foreign_key "courses", "categories"
   add_foreign_key "courses", "instructors"
   add_foreign_key "enrollments", "courses"
   add_foreign_key "enrollments", "users"
