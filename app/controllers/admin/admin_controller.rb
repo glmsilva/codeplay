@@ -3,6 +3,7 @@ module Admin
     before_action :authenticate_user!
     before_action :admin_access
 
+
   private
 
     def admin_access

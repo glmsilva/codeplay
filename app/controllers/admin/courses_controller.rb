@@ -48,6 +48,10 @@ module Admin
       redirect_to admin_course_path(@course), notice: 'Atualizado com sucesso'
     end
 
+    def enrollments 
+      @enrollments = Enrollment.all
+    end
+
     private
 
     def set_course

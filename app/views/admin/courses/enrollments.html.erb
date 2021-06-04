@@ -1,0 +1,6 @@
+<% @enrollments.each do |enrollment| %> 
+   <%= enrollment.user.name %>
+   <%= enrollment.course.name%>
+   <%= number_to_currency enrollment.course.price%>
+   <%= enrollment.created_at %>
+<% end %>

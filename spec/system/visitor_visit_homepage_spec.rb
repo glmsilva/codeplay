@@ -20,13 +20,13 @@ describe 'Visitor visit homepage' do
                                     email: 'fulano@codeplay.com.br')
     category = Category.create!(name: 'Web')
     course = Course.create!(name: 'Ruby on Rails',
-                                       description: 'Um curso de Ruby on Rails',
-                                       code: 'RUBYONRAILS',
-                                       price: 20,
-                                       enrollment_deadline: 1.month.from_now,
-                                       category: category,
-                                       instructor: instructor,
-                                       banner: fixture_file_upload(Rails.root.join('spec/fixtures/course.png')))
+                            description: 'Um curso de Ruby on Rails',
+                            code: 'RUBYONRAILS',
+                            price: 20,
+                            enrollment_deadline: 1.month.from_now,
+                            category: category,
+                            instructor: instructor,
+                            banner: fixture_file_upload(Rails.root.join('spec/fixtures/course.png')))
 
     visit root_path
     fill_in 'Pesquisar', with: 'Ruby'

@@ -18,6 +18,9 @@
         </li>
         <% if user_signed_in? %>
           <li class="nav-item">
+            <%= link_to 'Compras', admin_enrollments_path, method: :get, class:'nav-link' %>
+          </li>
+          <li class="nav-item">
             <%= link_to current_user.email, '#', class: 'nav-link'%>
           </li>
           <li class="nav-item">
